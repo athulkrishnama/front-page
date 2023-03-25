@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script>
+        function generatePDF() {
+            const element = document.getElementById('container_content');
+            var opt = {
+                margin: 0,
+                filename: 'html2pdf_example.pdf',
+                image: { type: 'jpeg', quality: 1 },
+                html2canvas: {
+                    dpi: 192,
+                    scale: 4,
+                    letterRendering: true,
+                    useCORS: true
+                },
+                jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+            };
+            // Choose the element that our invoice is rendered in.
+            html2pdf().set(opt).from(element).save();
+        }
+        function changeData(id) {
+            var topic = document.getElementById(id).value
+            document.getElementById(id + '-field').innerHTML = topic
+        }
+    </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="" class="form-label">Name</label>
+                    <input type="text" id="name" class="form-control" onchange="changeData(this.id)">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Course</label>
+                    <input type="text" id="course" class="form-control" onchange="changeData(this.id)">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Topic</label>
+                    <input type="text" id="topic" class="form-control" onchange="changeData(this.id)">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Subject</label>
+                    <input type="text" id="subject" class="form-control" onchange="changeData(this.id)">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Date</label>
+                    <input type="date" id="date" class="form-control" onchange="changeData(this.id)">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Teacher Name</label>
+                    <input type="text" id="teacher" class="form-control" onchange="changeData(this.id)">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Teachers Department</label>
+                    <input type="text" id="dept" class="form-control" onchange="changeData(this.id)">
+                </div>
+                <button onclick="generatePDF()" class="btn btn-primary">Create PDF</button>
+            </div>
+
+
+            <div class="col-md-6">
+                <div class="container_content" id="container_content">
+                    <div class="page">
+                        <div class="bordered">
+
+                            <p>Assignment on </p>
+                            <p id="topic-field" class="bold">devraj</p>
+                            <div style="height:4rem;"></div>
+                            <p>submitted by</p>
+                            <p class="bold" id="name-field">Athul</p>
+                            <div style="height:4rem;"></div>
+                            <p>Subject</p>
+                            <p id="subject-field" class="bold" >Microprocessor</p>
+                            <div style="height:4rem;"></div>
+                            <p>Course Undergoing</p>
+                            <p  class="bold" id="course-field">Bsc Cs</p>
+                            <div style="height:4rem;"></div>
+                            <p>Date</p>
+                            <p class="bold" id="date-field">17/12/2023</p>
+                            <div style="height:4rem;"></div>
+                            <p>Submitted to</p>
+                            <p class="bold" id="teacher-field">Mrs Neethu </p>
+                            <div style="height:4rem;"></div>
+                            <p class="bold">Department of <span id="dept-field">Cs</span></p>
+                            <div style="height:4rem;"></div>
+                            <h3>Don Bosco College</h3>
+                            <p>(Affiliated to Calicut University)</p>
+                            <p>Mannuthy, Thrissur</p>
+                            <p>2022-23</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+<style>
+    .page {
+        box-sizing: border-box;
+        padding: 3rem;
+        width: 21cm;
+        height: 29.6cm;
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+    .bordered {
+        width: 98%;
+        height: 100%;
+        border: 4px double black;
+        text-align: center;
+        padding: 3rem 0;
+    }
+
+    .bold {
+        font-weight: 800;
+    }
+
+    p {
+        margin: 0;
+    }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+
+</html>
