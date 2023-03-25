@@ -7,9 +7,10 @@
     <script>
         function generatePDF() {
             const element = document.getElementById('container_content');
+            var pdfName = document.getElementById('name-field').innerHTML+'_'+document.getElementById('topic-field').innerHTML+'.pdf'
             var opt = {
                 margin: 0,
-                filename: 'html2pdf_example.pdf',
+                filename: pdfName,
                 image: { type: 'jpeg', quality: 1 },
                 html2canvas: {
                     dpi: 192,
@@ -51,31 +52,31 @@
                 <div class="ps-5">
                     <div class="mb-3">
                         <label for="" class="form-label">Name</label>
-                        <input type="text" id="name" class="form-control" onchange="changeData(this.id)">
+                        <input type="text" placeholder="Eg: Athul Krishna M A" id="name" class="form-control" onchange="changeData(this.id)">
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">Course</label>
-                        <input type="text" id="course" class="form-control" onchange="changeData(this.id)">
+                        <input type="text" placeholder="Eg: 2nd Bsc Computer Science"  id="course" class="form-control" onchange="changeData(this.id)">
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">Topic</label>
-                        <input type="text" id="topic" class="form-control" onchange="changeData(this.id)">
+                        <input type="text" placeholder="Eg: Relations between .." id="topic" class="form-control" onchange="changeData(this.id)">
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">Subject</label>
-                        <input type="text" id="subject" class="form-control" onchange="changeData(this.id)">
+                        <input type="text" placeholder="Eg: Relational Database Management System" id="subject" class="form-control" onchange="changeData(this.id)">
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">Date</label>
-                        <input type="date" id="date" class="form-control" onchange="changeData(this.id)">
+                        <input type="date" value="2023-05-03" id="date" class="form-control" onchange="changeData(this.id)">
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">Teacher Name</label>
-                        <input type="text" id="teacher" class="form-control" onchange="changeData(this.id)">
+                        <input type="text" placeholder="Eg: Mrs Jeethu Philip" id="teacher" class="form-control" onchange="changeData(this.id)">
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">Teachers Department</label>
-                        <input type="text" id="dept" class="form-control" onchange="changeData(this.id)">
+                        <input type="text" id="dept" placeholder="Eg: Computer Science" class="form-control" onchange="changeData(this.id)">
                     </div>
                     <button onclick="generatePDF()" class="btn btn-primary">Create PDF</button>
                 </div>
@@ -88,24 +89,24 @@
                         <div class="bordered">
 
                             <p>Assignment on </p>
-                            <p id="topic-field" class="bold">devraj</p>
+                            <p id="topic-field" class="bold">Relations Between ...</p>
                             <div style="height:4rem;"></div>
                             <p>submitted by</p>
-                            <p class="bold" id="name-field">Athul</p>
+                            <p class="bold" id="name-field">Athul Krishna M A</p>
                             <div style="height:4rem;"></div>
                             <p>Subject</p>
-                            <p id="subject-field" class="bold">Microprocessor</p>
+                            <p id="subject-field" class="bold">Relational Database Management System</p>
                             <div style="height:4rem;"></div>
                             <p>Course Undergoing</p>
-                            <p class="bold" id="course-field">Bsc Cs</p>
+                            <p class="bold" id="course-field">2nd Bsc Computer Science</p>
                             <div style="height:4rem;"></div>
                             <p>Date</p>
                             <p class="bold" id="date-field">17/12/2023</p>
                             <div style="height:4rem;"></div>
                             <p>Submitted to</p>
-                            <p class="bold" id="teacher-field">Mrs Neethu </p>
+                            <p class="bold" id="teacher-field">Mrs Jeethu Philip</p>
                             <div style="height:4rem;"></div>
-                            <p class="bold">Department of <span id="dept-field">Cs</span></p>
+                            <p class="bold">Department of <span id="dept-field">Computer Science</span></p>
                             <div style="height:4rem;"></div>
                             <h3>Don Bosco College</h3>
                             <p>(Affiliated to Calicut University)</p>
@@ -140,6 +141,7 @@
 
     .bold {
         font-weight: 800;
+        text-transform: capitalize;
     }
 
     p {
