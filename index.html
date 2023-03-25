@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script>
         function generatePDF() {
@@ -22,47 +23,62 @@
             html2pdf().set(opt).from(element).save();
         }
         function changeData(id) {
-            var topic = document.getElementById(id).value
-            document.getElementById(id + '-field').innerHTML = topic
+            var value = document.getElementById(id).value
+            if (id == 'date') {
+                var date = new Date(value)
+                var day = date.getDate()
+                var month = date.getMonth() + 1
+                var year = date.getFullYear()
+                day = day < 10 ? '0' + day : day
+                month = month < 10 ? '0' + month : month
+                value = day + '/' + month + '/' + year
+            }
+            document.getElementById(id + '-field').innerHTML = value
         }
+
     </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 
 <body>
+
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <div class="mb-3">
-                    <label for="" class="form-label">Name</label>
-                    <input type="text" id="name" class="form-control" onchange="changeData(this.id)">
+                <div class="ps-5">
+                    <div class="mb-3">
+                        <label for="" class="form-label">Name</label>
+                        <input type="text" id="name" class="form-control" onchange="changeData(this.id)">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Course</label>
+                        <input type="text" id="course" class="form-control" onchange="changeData(this.id)">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Topic</label>
+                        <input type="text" id="topic" class="form-control" onchange="changeData(this.id)">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Subject</label>
+                        <input type="text" id="subject" class="form-control" onchange="changeData(this.id)">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Date</label>
+                        <input type="date" id="date" class="form-control" onchange="changeData(this.id)">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Teacher Name</label>
+                        <input type="text" id="teacher" class="form-control" onchange="changeData(this.id)">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Teachers Department</label>
+                        <input type="text" id="dept" class="form-control" onchange="changeData(this.id)">
+                    </div>
+                    <button onclick="generatePDF()" class="btn btn-primary">Create PDF</button>
                 </div>
-                <div class="mb-3">
-                    <label for="" class="form-label">Course</label>
-                    <input type="text" id="course" class="form-control" onchange="changeData(this.id)">
-                </div>
-                <div class="mb-3">
-                    <label for="" class="form-label">Topic</label>
-                    <input type="text" id="topic" class="form-control" onchange="changeData(this.id)">
-                </div>
-                <div class="mb-3">
-                    <label for="" class="form-label">Subject</label>
-                    <input type="text" id="subject" class="form-control" onchange="changeData(this.id)">
-                </div>
-                <div class="mb-3">
-                    <label for="" class="form-label">Date</label>
-                    <input type="date" id="date" class="form-control" onchange="changeData(this.id)">
-                </div>
-                <div class="mb-3">
-                    <label for="" class="form-label">Teacher Name</label>
-                    <input type="text" id="teacher" class="form-control" onchange="changeData(this.id)">
-                </div>
-                <div class="mb-3">
-                    <label for="" class="form-label">Teachers Department</label>
-                    <input type="text" id="dept" class="form-control" onchange="changeData(this.id)">
-                </div>
-                <button onclick="generatePDF()" class="btn btn-primary">Create PDF</button>
             </div>
 
 
@@ -78,10 +94,10 @@
                             <p class="bold" id="name-field">Athul</p>
                             <div style="height:4rem;"></div>
                             <p>Subject</p>
-                            <p id="subject-field" class="bold" >Microprocessor</p>
+                            <p id="subject-field" class="bold">Microprocessor</p>
                             <div style="height:4rem;"></div>
                             <p>Course Undergoing</p>
-                            <p  class="bold" id="course-field">Bsc Cs</p>
+                            <p class="bold" id="course-field">Bsc Cs</p>
                             <div style="height:4rem;"></div>
                             <p>Date</p>
                             <p class="bold" id="date-field">17/12/2023</p>
@@ -128,6 +144,11 @@
 
     p {
         margin: 0;
+    }
+
+    h1 {
+        font-family: monospace;
+        font-weight: bolder;
     }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
