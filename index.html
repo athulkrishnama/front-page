@@ -16,7 +16,12 @@
             date = year + '-' + month + '-' + day
             var date2 = day + '/' + month + '/' + year
             document.getElementById('date').value = date
-            document.getElementById('date-field').innerHTML=date2
+            document.getElementById('date-field').innerHTML = date2
+            if(month<6){
+                year = parseInt(year)-1
+            }
+            document.getElementById('year-field').innerHTML = year+'-'+(year-1999)
+            document.getElementById('year').value=year-2000
         })
         function generatePDF() {
             const element = document.getElementById('container_content');
@@ -48,6 +53,10 @@
                 month = month < 10 ? '0' + month : month
                 value = day + '/' + month + '/' + year
             }
+            else if(id == 'year')
+            {
+                value='20'+value+'-'+(parseInt(value)+1)
+            }
             document.getElementById(id + '-field').innerHTML = value
         }
 
@@ -64,10 +73,11 @@
     <h1 class="hidden">Calicut University</h1>
     <h1 class="hidden">Don Bosco College Mannuthy</h1>
     <h1 class="hidden">Athul Krishna M A</h1>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-6">
                 <div class="ps-5">
+                    <button onclick="generatePDF()" class="btn btn-primary m-3">Create PDF</button>
                     <div class="mb-3">
                         <label for="" class="form-label">Name</label>
                         <input type="text" placeholder="Eg: Athul Krishna M A" id="name" class="form-control"
@@ -103,13 +113,17 @@
                         <input type="text" id="dept" placeholder="Eg: Computer Science" class="form-control"
                             onchange="changeData(this.id)">
                     </div>
-                    <button onclick="generatePDF()" class="btn btn-primary">Create PDF</button>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Academic Year</label>
+                        <input onchange="changeData(this.id)" id="year" min="22" max="29" type="number" class="form-control">
+                    </div>
+                    
                 </div>
             </div>
 
 
             <div class="col-md-6">
-                <div class="container_content" id="container_content">
+                <div class="container_content view" id="container_content">
                     <div class="page">
                         <div class="bordered">
 
@@ -136,7 +150,7 @@
                             <h3>Don Bosco College</h3>
                             <p>(Affiliated to Calicut University)</p>
                             <p>Mannuthy, Thrissur</p>
-                            <p>2022-23</p>
+                            <p><span id="year-field"></span></p>
                         </div>
                     </div>
                 </div>
@@ -180,6 +194,9 @@
 
     .hidden {
         display: none;
+    }
+    .view{
+        overflow: scroll;
     }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
